@@ -1,29 +1,29 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_base_app/src/repositories/items/itemRepository.dart';
+import 'package:pilot_log/src/repositories/items/itemRepository.dart';
 import './bloc.dart';
 
-class EditItemBloc extends Bloc<EditItemEvent, EditItemState> {
-  final ItemRepository _itemRepository;
+class EditLogbookEntryBloc extends Bloc<EditLogbookEntryEvent, EditLogbookEntryState> {
+  final LogbookEntryRepository _logbookEntryRepository;
 
-  EditItemBloc({ItemRepository itemRepository})
-      : this._itemRepository = itemRepository ?? ItemRepository();
-
-  @override
-  EditItemState get initialState => InitialEdititemState();
+  EditLogbookEntryBloc({LogbookEntryRepository logbookEntryRepository})
+      : this._logbookEntryRepository = logbookEntryRepository ?? LogbookEntryRepository();
 
   @override
-  Stream<EditItemState> mapEventToState(
-    EditItemEvent event,
+  EditLogbookEntryState get initialState => InitialLogbookEntryState();
+
+  @override
+  Stream<EditLogbookEntryState> mapEventToState(
+    EditLogbookEntryEvent event,
   ) async* {
-    if (event is SaveItem) {
+    if (event is SaveLogbookEntry) {
       try {
-        yield ItemLoading();
-        final item = await _itemRepository.saveItem(event.item);
-        yield ItemSaved(item);
+        yield LogbookEntryLoading();
+        final item = await _logbookEntryRepository.saveLogbookEntry(event.logbookEntry);
+        yield LogbookEntrySaved(item);
       } catch (e) {
         print(e);
-        yield ItemSaveError();
+        yield LogbookEntrySaveError();
       }
     }
   }

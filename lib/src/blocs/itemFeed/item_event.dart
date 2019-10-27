@@ -1,8 +1,8 @@
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class ItemEvent {}
+abstract class LogbookEntryEvent {}
 
-class FetchItems extends ItemEvent {}
+class FetchItems extends LogbookEntryEvent {}
 
 

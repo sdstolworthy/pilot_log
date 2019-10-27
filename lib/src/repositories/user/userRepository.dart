@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_base_app/src/repositories/appHttpHandler.dart';
+import 'package:pilot_log/src/repositories/appHttpHandler.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserRepository {

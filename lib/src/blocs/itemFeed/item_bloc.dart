@@ -1,24 +1,24 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base_app/src/repositories/items/itemRepository.dart';
+import 'package:pilot_log/src/repositories/items/itemRepository.dart';
 import './bloc.dart';
 
-class ItemBloc extends Bloc<ItemEvent, ItemState> {
+class LogbookEntryBloc extends Bloc<LogbookEntryEvent, LogbookEntryState> {
   @override
-  ItemState get initialState => ItemsUnloaded();
+  LogbookEntryState get initialState => LogbookEntriesUnloaded();
 
-  final ItemRepository itemRepository;
+  final LogbookEntryRepository logbookEntryRepository;
 
-  ItemBloc({@required this.itemRepository});
+  LogbookEntryBloc({@required this.logbookEntryRepository});
 
   @override
-  Stream<ItemState> mapEventToState(
-    ItemEvent event,
+  Stream<LogbookEntryState> mapEventToState(
+    LogbookEntryEvent event,
   ) async* {
     if (event is FetchItems) {
-      final items = await itemRepository.getItems();
-      yield ItemsFetched(items);
+      final logbookEntries = await logbookEntryRepository.getItems();
+      yield LogbookEntriesFetched(logbookEntries);
     }
   }
 }

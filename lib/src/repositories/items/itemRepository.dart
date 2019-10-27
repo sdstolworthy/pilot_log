@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_base_app/src/models/Item.dart';
+import 'package:pilot_log/src/models/Item.dart';
 
-class ItemRepository {
+class LogbookEntryRepository {
   static const _userCollectionName = 'users';
-  static const _itemCollectionName = 'items';
+  static const _itemCollectionName = 'logbookEntries';
 
   FirebaseAuth _firebaseAuth;
 
-  ItemRepository({FirebaseAuth firebaseAuth})
+  LogbookEntryRepository({FirebaseAuth firebaseAuth})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
   getItems({take = 50, limit = 50, skip = 50}) async {
     FirebaseUser user = await _firebaseAuth.currentUser();
@@ -20,22 +20,22 @@ class ItemRepository {
         .documents
         .toList();
     return entries.isEmpty
-        ? <Item>[]
+        ? <LogbookEntry>[]
         : entries
             .map(
-              (DocumentSnapshot entry) => Item.fromMap(entry.data),
+              (DocumentSnapshot entry) => LogbookEntry.fromMap(entry.data),
             )
             .toList();
   }
 
-  saveItem(Item item) async {
+  saveLogbookEntry(LogbookEntry logbookEntry) async {
     FirebaseUser user = await _firebaseAuth.currentUser();
     await Firestore.instance
         .collection(_userCollectionName)
         .document(user.uid)
         .collection(_itemCollectionName)
-        .document(item.id.toString())
-        .setData(item.toMap());
-    return item;
+        .document(logbookEntry.id.toString())
+        .setData(logbookEntry.toMap());
+    return logbookEntry;
   }
 }

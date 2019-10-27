@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_app/src/blocs/editItem/bloc.dart';
-import 'package:flutter_base_app/src/models/Item.dart';
+import 'package:pilot_log/src/blocs/editItem/bloc.dart';
+import 'package:pilot_log/src/models/Item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EditItemArgs {
-  Item item;
+class EditLogbookEntryArgs {
+  LogbookEntry logbookEntry;
 
-  EditItemArgs({this.item});
+  EditLogbookEntryArgs({this.logbookEntry});
 }
 
-class EditItem extends StatefulWidget {
-  final Item item;
-  EditItem({Item item}) : this.item = item ?? Item();
+class EditLogbookEntry extends StatefulWidget {
+  final LogbookEntry logbookEntry;
+  EditLogbookEntry({LogbookEntry logbookEntry}) : this.logbookEntry = logbookEntry ?? LogbookEntry();
   @override
   State<StatefulWidget> createState() {
-    return _EditItemState(item: this.item);
+    return _EditLogbookEntryState(logbookEntry: this.logbookEntry);
   }
 }
 
-class _EditItemState extends State<EditItem> {
-  Item item;
-  final EditItemBloc _editItemBloc = EditItemBloc();
-  _EditItemState({this.item});
+class _EditLogbookEntryState extends State<EditLogbookEntry> {
+  LogbookEntry logbookEntry;
+  final EditLogbookEntryBloc _editItemBloc = EditLogbookEntryBloc();
+  _EditLogbookEntryState({this.logbookEntry});
   initState() {
     super.initState();
   }
@@ -40,7 +40,7 @@ class _EditItemState extends State<EditItem> {
               title: Text('Edit Entry'),
             ),
             body: SafeArea(
-              child: state is ItemLoading
+              child: state is LogbookEntryLoading
                   ? Center(
                       child: CircularProgressIndicator(),
                     )
@@ -49,30 +49,30 @@ class _EditItemState extends State<EditItem> {
                       children: <Widget>[
                         SizedBox(height: 20),
                         TextFormField(
-                          initialValue: item.title,
+                          initialValue: logbookEntry.title,
                           decoration: InputDecoration(labelText: 'Item Title'),
                           onChanged: (t) {
-                            item.title = t;
+                            logbookEntry.title = t;
                           },
                         ),
                         TextFormField(
-                          initialValue: item.description,
+                          initialValue: logbookEntry.description,
                           decoration:
                               InputDecoration(labelText: 'Item Description'),
                           onChanged: (t) {
-                            item.description = t;
+                            logbookEntry.description = t;
                           },
                         ),
                         TextFormField(
-                          initialValue: item.photoUrl,
+                          initialValue: logbookEntry.photoUrl,
                           decoration: InputDecoration(labelText: 'Photo Url'),
                           onChanged: (t) {
-                            item.photoUrl = t;
+                            logbookEntry.photoUrl = t;
                           },
                         ),
                         RaisedButton(
                           onPressed: () {
-                            _editItemBloc.add(SaveItem(item));
+                            _editItemBloc.add(SaveLogbookEntry(logbookEntry));
                           },
                           child: Text('Submit'),
                         )

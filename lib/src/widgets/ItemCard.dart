@@ -1,13 +1,13 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base_app/src/models/Item.dart';
+import 'package:pilot_log/src/models/Item.dart';
 
 typedef void OnPressed();
 
-class ItemCard extends StatelessWidget {
-  final Item item;
+class LogbookEntryCard extends StatelessWidget {
+  final LogbookEntry logbookEntry;
   final OnPressed onPressed;
-  ItemCard({@required this.item, this.onPressed});
+  LogbookEntryCard({@required this.logbookEntry, this.onPressed});
   build(context) {
     final theme = Theme.of(context);
     return Card(
@@ -21,7 +21,7 @@ class ItemCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(item.title, style: theme.textTheme.headline),
+              Text(logbookEntry.title, style: theme.textTheme.headline),
               Row(
                 children: <Widget>[
                   Padding(
@@ -33,7 +33,7 @@ class ItemCard extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          item.description,
+                          logbookEntry.description,
                           softWrap: true,
                         ),
                       ],

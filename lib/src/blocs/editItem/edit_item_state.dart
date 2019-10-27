@@ -1,21 +1,21 @@
-import 'package:flutter_base_app/src/models/Item.dart';
+import 'package:pilot_log/src/models/Item.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class EditItemState {}
+abstract class EditLogbookEntryState {}
 
-class InitialEdititemState extends EditItemState {}
+class InitialLogbookEntryState extends EditLogbookEntryState {}
 
-class ItemLoaded extends EditItemState {
-  final Item item;
-  ItemLoaded(this.item);
+class LogbookEntryLoaded extends EditLogbookEntryState {
+  final LogbookEntry logbookEntry;
+  LogbookEntryLoaded(this.logbookEntry);
 }
 
-class ItemSaved extends EditItemState {
-  final Item item;
-  ItemSaved(this.item);
+class LogbookEntrySaved extends EditLogbookEntryState {
+  final LogbookEntry item;
+  LogbookEntrySaved(this.item);
 }
 
-class ItemLoading extends EditItemState {}
+class LogbookEntryLoading extends EditLogbookEntryState {}
 
-class ItemSaveError extends EditItemState {}
+class LogbookEntrySaveError extends EditLogbookEntryState {}

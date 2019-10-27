@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_app/src/blocs/itemFeed/bloc.dart';
-import 'package:flutter_base_app/src/repositories/items/itemRepository.dart';
-import 'package:flutter_base_app/src/screens/ItemDetails/ItemDetails.dart';
-import 'package:flutter_base_app/src/services/navigator.dart';
-import 'package:flutter_base_app/src/services/routes.dart';
-import 'package:flutter_base_app/src/widgets/AppDrawer/drawer.dart';
-import 'package:flutter_base_app/src/widgets/ItemCard.dart';
+import 'package:pilot_log/src/blocs/itemFeed/bloc.dart';
+import 'package:pilot_log/src/repositories/items/itemRepository.dart';
+import 'package:pilot_log/src/screens/ItemDetails/ItemDetails.dart';
+import 'package:pilot_log/src/services/navigator.dart';
+import 'package:pilot_log/src/services/routes.dart';
+import 'package:pilot_log/src/widgets/AppDrawer/drawer.dart';
+import 'package:pilot_log/src/widgets/ItemCard.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ItemFeed extends StatefulWidget {
+class LogbookEntryFeed extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ItemFeedState();
+    return _LogbookEntryFeedState();
   }
 }
 
-class _ItemFeedState extends State<ItemFeed> {
+class _LogbookEntryFeedState extends State<LogbookEntryFeed> {
   // final items = List.generate(20, (_) => Item.random());
-  ItemBloc _itemBloc;
+  LogbookEntryBloc _logbookEntryBloc;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void initState() {
-    _itemBloc = ItemBloc(itemRepository: ItemRepository());
+    _logbookEntryBloc = LogbookEntryBloc(logbookEntryRepository: LogbookEntryRepository());
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class _ItemFeedState extends State<ItemFeed> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             rootNavigationService.navigateTo(
-              FlutterAppRoutes.itemEdit,
+              FlutterAppRoutes.logbookEntryEdit,
             );
           },
           child: Icon(Icons.edit),
@@ -48,29 +48,29 @@ class _ItemFeedState extends State<ItemFeed> {
           ),
         ),
         drawer: AppDrawer(),
-        body: BlocBuilder<ItemBloc, ItemState>(
-          bloc: _itemBloc,
+        body: BlocBuilder<LogbookEntryBloc, LogbookEntryState>(
+          bloc: _logbookEntryBloc,
           builder: (context, state) {
-            if (state is ItemsUnloaded) {
-              _itemBloc.add(FetchItems());
+            if (state is LogbookEntriesUnloaded) {
+              _logbookEntryBloc.add(FetchItems());
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is ItemsFetched) {
+            } else if (state is LogbookEntriesFetched) {
               return SafeArea(
                   child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return ItemCard(
-                    item: state.items[index],
+                  return LogbookEntryCard(
+                    logbookEntry: state.logbookEntries[index],
                     onPressed: () {
                       rootNavigationService.navigateTo(
-                          FlutterAppRoutes.itemDetails,
-                          arguments:
-                              ItemDetailsArguments(item: state.items[index]));
+                          FlutterAppRoutes.logbookEntryDetails,
+                          arguments: LogbookEntryDetailsArguments(
+                              logbookEntry: state.logbookEntries[index]));
                     },
                   );
                 },
-                itemCount: state.items.length,
+                itemCount: state.logbookEntries.length,
               ));
             }
             return Container();

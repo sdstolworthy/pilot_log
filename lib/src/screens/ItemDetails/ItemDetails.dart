@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_app/src/models/Item.dart';
-import 'package:flutter_base_app/src/screens/EditItem/EditItem.dart';
-import 'package:flutter_base_app/src/services/navigator.dart';
-import 'package:flutter_base_app/src/services/routes.dart';
+import 'package:pilot_log/src/models/Item.dart';
+import 'package:pilot_log/src/screens/EditItem/EditItem.dart';
+import 'package:pilot_log/src/services/navigator.dart';
+import 'package:pilot_log/src/services/routes.dart';
 
-class ItemDetailsArguments {
-  Item item;
+class LogbookEntryDetailsArguments {
+  LogbookEntry logbookEntry;
 
-  ItemDetailsArguments({@required this.item});
+  LogbookEntryDetailsArguments({@required this.logbookEntry});
 }
 
-class ItemDetails extends StatelessWidget {
-  final Item item;
-  ItemDetails(this.item);
+class LogbookEntryDetails extends StatelessWidget {
+  final LogbookEntry item;
+  LogbookEntryDetails(this.item);
   build(context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
@@ -32,8 +32,8 @@ class ItemDetails extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                rootNavigationService.navigateTo(FlutterAppRoutes.itemEdit,
-                    arguments: EditItemArgs(item: item));
+                rootNavigationService.navigateTo(FlutterAppRoutes.logbookEntryEdit,
+                    arguments: EditLogbookEntryArgs(logbookEntry: item));
               },
             )
           ],

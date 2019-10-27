@@ -1,14 +1,14 @@
-import 'package:flutter_base_app/src/models/Item.dart';
+import 'package:pilot_log/src/models/Item.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class ItemState {}
+abstract class LogbookEntryState {}
 
-class ItemsUnloaded extends ItemState {}
+class LogbookEntriesUnloaded extends LogbookEntryState {}
 
-class ItemsFetched extends ItemState {
-  final List<Item> items;
-  ItemsFetched(this.items);
+class LogbookEntriesFetched extends LogbookEntryState {
+  final List<LogbookEntry> logbookEntries;
+  LogbookEntriesFetched(this.logbookEntries);
 }
 
-class FetchError extends ItemState {}
+class FetchError extends LogbookEntryState {}

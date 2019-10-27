@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_app/src/blocs/authentication/authentication_state.dart';
-import 'package:flutter_base_app/src/blocs/authentication/bloc.dart';
-import 'package:flutter_base_app/src/services/localizations/localizations.dart';
-import 'package:flutter_base_app/src/services/navigator.dart';
-import 'package:flutter_base_app/src/services/routes.dart';
-import 'package:flutter_base_app/src/theme/theme.dart';
-import 'package:flutter_base_app/src/widgets/BlocProvider.dart';
+import 'package:pilot_log/src/blocs/authentication/authentication_state.dart';
+import 'package:pilot_log/src/blocs/authentication/bloc.dart';
+import 'package:pilot_log/src/services/localizations/localizations.dart';
+import 'package:pilot_log/src/services/navigator.dart';
+import 'package:pilot_log/src/services/routes.dart';
+import 'package:pilot_log/src/theme/theme.dart';
+import 'package:pilot_log/src/widgets/BlocProvider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_base_app/src/blocs/localization/bloc.dart';
+import 'package:pilot_log/src/blocs/localization/bloc.dart';
 
 class FlutterApp extends StatelessWidget {
   build(_) {
@@ -25,7 +25,7 @@ class FlutterApp extends StatelessWidget {
         },
         listener: (context, AuthenticationState state) {
           if (state is Authenticated) {
-            rootNavigationService.navigateTo(FlutterAppRoutes.itemFeed);
+            rootNavigationService.navigateTo(FlutterAppRoutes.logbookEntryFeed);
           } else if (state is Unauthenticated) {
             rootNavigationService.returnToLogin();
           }
