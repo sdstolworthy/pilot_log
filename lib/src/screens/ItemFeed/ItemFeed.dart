@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pilot_log/src/blocs/itemFeed/bloc.dart';
 import 'package:pilot_log/src/repositories/items/itemRepository.dart';
-import 'package:pilot_log/src/screens/ItemDetails/ItemDetails.dart';
+import 'package:pilot_log/src/screens/LogbookEntryDetails/LogbookEntryDetails.dart';
 import 'package:pilot_log/src/services/navigator.dart';
 import 'package:pilot_log/src/services/routes.dart';
 import 'package:pilot_log/src/widgets/AppDrawer/drawer.dart';
-import 'package:pilot_log/src/widgets/ItemCard.dart';
+import 'package:pilot_log/src/widgets/LogbookEntryCard.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LogbookEntryFeed extends StatefulWidget {
@@ -21,7 +21,8 @@ class _LogbookEntryFeedState extends State<LogbookEntryFeed> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   void initState() {
-    _logbookEntryBloc = LogbookEntryBloc(logbookEntryRepository: LogbookEntryRepository());
+    _logbookEntryBloc =
+        LogbookEntryBloc(logbookEntryRepository: LogbookEntryRepository());
     super.initState();
   }
 

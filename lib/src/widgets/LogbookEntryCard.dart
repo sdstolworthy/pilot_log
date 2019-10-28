@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:pilot_log/src/models/Item.dart';
+import 'package:pilot_log/src/models/LogbookEntry.dart';
 
 typedef void OnPressed();
 
@@ -33,7 +33,7 @@ class LogbookEntryCard extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          logbookEntry.description,
+                          logbookEntry.title,
                           softWrap: true,
                         ),
                       ],

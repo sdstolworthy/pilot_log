@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pilot_log/src/screens/EditItem/EditItem.dart';
+import 'package:pilot_log/src/screens/EditLogbookEntry/EditLogbookEntry.dart';
 import 'package:pilot_log/src/screens/ItemFeed/ItemFeed.dart';
-import 'package:pilot_log/src/screens/ItemDetails/ItemDetails.dart';
+import 'package:pilot_log/src/screens/LogbookEntryDetails/LogbookEntryDetails.dart';
 import 'package:pilot_log/src/screens/Onboarding/OnboardingRoutes.dart';
 
 class FlutterAppRoutes {

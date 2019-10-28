@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:pilot_log/src/models/Item.dart';
+import 'package:pilot_log/src/models/LogbookEntry.dart';
 
 class LogbookEntryRepository {
   static const _userCollectionName = 'users';

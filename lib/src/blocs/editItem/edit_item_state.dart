@@ -1,4 +1,4 @@
-import 'package:pilot_log/src/models/Item.dart';
+import 'package:pilot_log/src/models/LogbookEntry.dart';
 import 'package:meta/meta.dart';
 
 @immutable

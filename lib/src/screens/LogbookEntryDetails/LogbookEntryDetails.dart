@@ -1,6 +1,8 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:pilot_log/src/models/Item.dart';
-import 'package:pilot_log/src/screens/EditItem/EditItem.dart';
+import 'package:intl/intl.dart';
+import 'package:pilot_log/src/models/LogbookEntry.dart';
+import 'package:pilot_log/src/screens/EditLogbookEntry/EditLogbookEntry.dart';
 import 'package:pilot_log/src/services/navigator.dart';
 import 'package:pilot_log/src/services/routes.dart';
 
@@ -11,8 +13,8 @@ class LogbookEntryDetailsArguments {
 }
 
 class LogbookEntryDetails extends StatelessWidget {
-  final LogbookEntry item;
-  LogbookEntryDetails(this.item);
+  final LogbookEntry logbookEntry;
+  LogbookEntryDetails(this.logbookEntry);
   build(context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
@@ -32,8 +34,10 @@ class LogbookEntryDetails extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                rootNavigationService.navigateTo(FlutterAppRoutes.logbookEntryEdit,
-                    arguments: EditLogbookEntryArgs(logbookEntry: item));
+                rootNavigationService.navigateTo(
+                    FlutterAppRoutes.logbookEntryEdit,
+                    arguments:
+                        EditLogbookEntryArgs(logbookEntry: logbookEntry));
               },
             )
           ],
@@ -46,22 +50,34 @@ class LogbookEntryDetails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text(item.title, style: theme.textTheme.display1),
+                      Flexible(
+                          child: Text(logbookEntry.title,
+                              style: theme.textTheme.display1)),
                     ],
                   ),
-                  item.photoUrl != null
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, bottom: 20),
-                          child: Image.network(item.photoUrl),
-                        )
-                      : Container(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: logbookEntry.photographs != null &&
+                            logbookEntry.photographs.length > 0
+                        ? CarouselSlider(
+                            height: 150,
+                            viewportFraction: 0.5,
+                            enableInfiniteScroll: false,
+                            items: <Widget>[
+                              ...logbookEntry.photographs
+                                  .map((p) => Image.network(p.imageUrl))
+                                  .toList()
+                            ],
+                          )
+                        : Container(),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Flexible(
                           child: Column(
                         children: <Widget>[
-                          Text(item.description,
+                          Text(logbookEntry.title,
                               style: theme.textTheme.subhead),
                         ],
                       )),

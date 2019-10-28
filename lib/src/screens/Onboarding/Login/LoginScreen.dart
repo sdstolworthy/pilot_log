@@ -6,7 +6,6 @@ import 'package:pilot_log/src/services/navigator.dart';
 import 'package:pilot_log/src/services/routes.dart';
 import 'package:pilot_log/src/widgets/LoginFormField.dart';
 import 'package:pilot_log/src/widgets/OnboardingButton.dart';
-import 'package:pilot_log/src/widgets/layouts/FullScreenLayout.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 

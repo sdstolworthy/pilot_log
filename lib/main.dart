@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pilot_log/src/FlutterApp.dart';
 
-void main() => runApp(FlutterApp());
+import 'package:pilot_log/src/services/appInitialization.dart';
+
+void main() {
+  AppInitialization.initializeApp();
+
+  runApp(FlutterApp());
+}
